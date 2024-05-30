@@ -1,0 +1,23 @@
+-- query for driver id, their current total points & number of wins from driver_standings table
+WITH points AS (
+	SELECT 
+		DISTINCT(driverid) AS driverid,
+		SUM(points) AS total_point,
+		COUNT(wins) AS wins
+	FROM driver_standings
+	GROUP BY driverid
+	ORDER BY total_point DESC
+)
+-- join subquery above and pull the remaining of driver details
+SELECT fd.driverid AS driver_id,
+	CONCAT(forename, ' ', surname) AS driver_fullname,
+	codename,
+	total_point,
+	wins,
+	dob AS birthday,
+	DATE_PART('year', AGE(CURRENT_DATE, dob)) AS current_age,
+	nationality
+FROM f1drivers AS fd
+JOIN points AS fp 
+ON fd.driverid = fp.driverid
+ORDER BY total_point DESC
