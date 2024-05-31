@@ -1,0 +1,12 @@
+-- base table for constructors
+SELECT
+	fc.constructorid,
+	fc.name AS constructor_name,
+	fc.nationality,
+	SUM(points) AS total_points,
+	COUNT(wins) AS total_wins
+FROM f1constructor AS fc
+JOIN f1constructor_standings AS cs
+ON fc.constructorid = cs.constructorid
+GROUP BY fc.constructorid, fc.name, fc.nationality
+ORDER BY total_points DESC, total_wins DESC
