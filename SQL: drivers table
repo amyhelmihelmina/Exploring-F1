@@ -1,10 +1,12 @@
+-- query used to pull base table for f1 drivers
+
 -- query for driver id, their current total points & number of wins from driver_standings table
 WITH points AS (
 	SELECT 
 		DISTINCT(driverid) AS driverid,
 		SUM(points) AS total_point,
 		COUNT(wins) AS wins
-	FROM driver_standings
+	FROM f1driver_standings
 	GROUP BY driverid
 	ORDER BY total_point DESC
 )
@@ -17,7 +19,7 @@ SELECT fd.driverid AS driver_id,
 	dob AS birthday,
 	DATE_PART('year', AGE(CURRENT_DATE, dob)) AS current_age,
 	nationality
-FROM f1drivers AS fd
+FROM f1driver AS fd
 JOIN points AS fp 
 ON fd.driverid = fp.driverid
 ORDER BY total_point DESC
