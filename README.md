@@ -21,4 +21,8 @@ SQL: ETL, CTEs, JOIN, subquery, aggregate functions
 Tableau: data modelling, calculated fields, dashboard
 
 ## Result
-Please click the link attached to the dashboard file to interact.
+An interactive dashboard that explores main topics in Formula 1 has beeen produced. Check screenshot in files.
+
+Please click the link below to interact with the dashboard:
+
+https://public.tableau.com/app/profile/amy.kamaruzaman/viz/ExploringF1/Dashboard1
